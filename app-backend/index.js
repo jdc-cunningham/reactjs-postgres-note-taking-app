@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 6000;
+const port = 5001;
 
-const { createNote, getNote, updateNote, deleteNote } = require('./db-queries/basicNoteQueries');
+const { createNote, getNote, updateNote, deleteNote, searchNotes } = require('./db-queries/basicNoteQueries');
 
 app.use(bodyParser.json());
 app.use(
@@ -23,6 +23,7 @@ app.post('/api/create-note', createNote);
 app.post('/api/get-note', getNote);
 app.post('/api/update-note', updateNote);
 app.post('/api/delete-note', deleteNote);
+app.post('/api/search-notes', searchNotes);
 
 app.listen(port, () => {
     console.log(`App runing on port ${port}.`);

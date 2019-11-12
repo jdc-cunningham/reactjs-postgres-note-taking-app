@@ -21,11 +21,15 @@ I'm also using Systemd to persist the node backend and this is going on a Raspbe
 
 ### DB Schema
 I'm just using default/super user `postgres`
+
 db name: notes
+
 `CREATE DATABASE "notes" WITH OWNER "postgres" ENCODING 'UTF8' LC_COLLATE = 'English_United States' LC_CTYPE = 'English_United States' TEMPLATE = 'template0';`
 
 table: note_entries
+
 **id, name, content, tags, created_at, updated_at**
+
 `CREATE TABLE note_entries (
 ID SERIAL PRIMARY KEY,
 name VARCHAR(255),
@@ -36,6 +40,7 @@ updated_at TIMESTAMP
 );`
 
 table: note_tags
+
 ~~**id, name, created_at, updated_at**
 `CREATE TABLE note_tags (
 ID SERIAL PRIMARY KEY,
@@ -45,6 +50,7 @@ updated_at TIMESTAMP
 );`~~
 
 **id, name, note_id, created_at, updated_at**
+
 `CREATE TABLE note_tags (
 ID SERIAL PRIMARY KEY,
 name VARCHAR(255),
