@@ -1,0 +1,9 @@
+{
+  "short_name": "Note Taking App",
+  "name": "How do I make one of these without all this cruff",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
