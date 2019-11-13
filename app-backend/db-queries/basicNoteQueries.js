@@ -43,7 +43,7 @@ const getNote = (request, response) => {
                 // need to handle these in a logger
                 response.status(401).send('Failed to find note'); // vague front end error
             } else {
-                response.status(201).send(results.rows[0]);
+                response.status(200).send(results.rows[0]);
             }
         }
     )
@@ -68,7 +68,7 @@ const updateNote = (request, response) => {
                 // need to handle these in a logger
                 response.status(401).send('Failed to update note ' + noteId); // vague front end error
             } else {
-                response.status(201).send(`Note updated`);
+                response.status(200).send(`Note updated`);
             }
         }
     )
@@ -87,7 +87,7 @@ const deleteNote = (request, response) => {
                 // need to handle these in a logger
                 response.status(401).send('Failed to delete new note'); // vague front end error
             } else {
-                response.status(201).send(`Note deleted`);
+                response.status(200).send(`Note deleted`);
             }
         }
     )
@@ -106,7 +106,7 @@ const searchNotes = (request, response) => {
                 // need to handle these in a logger
                 response.status(401).send('Failed to search for notes'); // vague front end error
             } else {
-                response.status(201).send(results.rows);
+                response.status(200).send(results.rows);
             }
         }
     )
