@@ -29,15 +29,14 @@ class SidePanel extends Component {
     searchNotes() {
         const searchInput = this.inputSearch.current.value
         const data = {};
-
-        if (!searchInput) {
-            return false;
-        }
-
         const prevState = this.state;
         prevState.searchFieldInput = searchInput;
 
         this.setState(prevState);
+
+        if (!searchInput) {
+            return false;
+        }
 
         data.searchTerm = searchInput;
 

@@ -208,13 +208,15 @@ class ContentPanel extends Component {
 
     render() {
         const activeNoteId = this.props.activeNoteId;
+        const newNoteUI = this.createNewNoteUI();
+        const loadNoteUI = this.state.activeNoteId !== activeNoteId ? this.getNoteById(activeNoteId) : this.createViewNoteUI();
 
         return (
             <div className="ContentPanel">
-                {
-                    // this.createNewNoteUI()
-                    this.state.activeNoteId !== activeNoteId ? this.getNoteById(activeNoteId) : this.createViewNoteUI()
-                }
+                <>
+                    {newNoteUI}
+                    {loadNoteUI}
+                </>
             </div>
         );
     }
