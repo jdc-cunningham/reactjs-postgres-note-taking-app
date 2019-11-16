@@ -5,8 +5,8 @@ import axios from 'axios';
 class ContentPanel extends Component {
     state = {
         newNote: {
-            name: "test note name",
-            body: "test note body"
+            name: "",
+            body: ""
         }
     }
 
@@ -37,10 +37,6 @@ class ContentPanel extends Component {
     }
 
     clearNewNoteFields() {
-        this.noteNameInput.current.value = "";
-        this.noteNameInput.current.placeholder = "note name";
-        this.noteContentTextarea.current.value = "";
-        this.noteContentTextarea.current.placeholder = "note content";
         this.setState({
             newNote: {
                 name: "",
@@ -87,6 +83,7 @@ class ContentPanel extends Component {
                             ref={ this.noteNameInput }
                             className="ContentPanel__top-bar-title-text"
                             value={ this.state.newNote.name || '' }
+                            placeholder="note name"
                             onChange={ this.updateNewNote } />
                         <button type="button" onClick={ this.createNewNote }>Create New Note</button>
                     </div>
@@ -96,6 +93,7 @@ class ContentPanel extends Component {
                         ref={ this.noteContentTextarea }
                         className="ContentPanel__textarea"
                         value={ this.state.newNote.body || '' }
+                        placeholder="note body"
                         onChange={ this.updateNewNote }></textarea>
                 </div>
             </div>

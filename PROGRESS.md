@@ -22,6 +22,12 @@ I'm bad because I don't get to use it in a day job at this time.
 
 Damn it cors issue...
 
+My 32GB of RAM arrived yes, they're in my hands sliding towards my groin
+I'm trying to get myself to finish this super simple app to write down all my stuff/progress/active tabs.
+Although... the Windows update happened anyway/restarted my comptuter and all of my stuff closed. Chrome tabs restarted though.
+I don't know maybe it's good to just start with a blank slate. I have so much random "middle of thought" things going.
+I'm just going to do it, I will finish the CRUD capability of this in a few minutes though.
+
 ##### 11/12/2019
 So it did completely slip my mind to make a way on the front end to insert notes.
 Also other features like loading last opened.
