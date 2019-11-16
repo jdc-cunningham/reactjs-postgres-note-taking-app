@@ -4,45 +4,71 @@ import axios from 'axios';
 
 class ContentPanel extends Component {
     state = {
-        uiMode: "display",
-        activeNote: {
-            name: "",
-            content: ""
+        newNote: {
+            name: "test note name",
+            body: "test note body"
         }
     }
 
     apiBasePath = 'http://localhost:5001/api';
     noteNameInput = React.createRef();
     noteContentTextarea = React.createRef();
-    getTopBarUI = this.getTopBarUI.bind(this);
-    getTextAreaUI = this.getTextareaUI.bind(this);
+    updateNewNote = this.updateNewNote.bind(this);
+    createNewNote = this.createNewNote.bind(this);
+    saveNote = this.saveNote.bind(this);
 
-    getUserData () {
-        return false;
-
-        // return {
-        //     id: 1,
-        //     name: "test",
-        //     content: "test content"
-        // };
+    updateNewNote() {
+        const newNoteName = this.noteNameInput.current.value;
+        const newNoteBody = this.noteContentTextarea.current.value;
+        this.setState({
+            newNote: {
+                name: newNoteName,
+                body: newNoteBody
+            }
+        });
     }
 
-    saveNote () {
-        const noteData = {
-            name: this.noteNameInput.current.value,
-            content: this.noteContentTextarea.current.value
-        };
+    // componentDidUpdate() {
+    //     console.log('yes');
+    // }
 
-        if (!noteData.name || !noteData.content) {
+    saveNote() {
+
+    }
+
+    clearNewNoteFields() {
+        this.noteNameInput.current.value = "";
+        this.noteNameInput.current.placeholder = "note name";
+        this.noteContentTextarea.current.value = "";
+        this.noteContentTextarea.current.placeholder = "note content";
+        this.setState({
+            newNote: {
+                name: "",
+                body: ""
+            }
+        });
+    }
+
+    createNewNote() {
+        const noteName = this.state.newNote.name;
+        const noteBody = this.state.newNote.body;
+
+        if (!noteName || !noteBody) {
             alert('Please make sure both name and content are not empty');
         } else {
             const data = {};
-            data.noteName = noteData.name;
-            data.noteContent = noteData.content;
+            data.noteName = noteName;
+            data.noteContent = noteBody;
 
-            axios.post(this.apiBasePath + '/save-note/', data)
+            axios.post(this.apiBasePath + '/create-note/', data)
                 .then((response) => {
                     console.log(response);
+                    if (response.status === 201) {
+                        alert('Created new note');
+                        this.clearNewNoteFields();
+                    } else {
+                        alert('Failed to create new note');
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -50,57 +76,38 @@ class ContentPanel extends Component {
         }
     }
 
-    getTopBarUI (noteNameInputRef) {
-        let topBarUI;
-
-        switch (this.state.uiMode) {
-                case "new":
-                    topBarUI = <div className="ContentPanel__top-bar-display">
-                        <input ref={ noteNameInputRef } className="ContentPanel__top-bar-title-text" />
-                        <button type="button" onClick={ this.saveNote }>Create Note</button>
-                    </div>
-                case "edit":
-                    topBarUI = <div className="ContentPanel__top-bar-modify">
-                        <input ref={ noteNameInputRef } type="text" placeholder="note name" />
-                        <button type="button" onClick={ this.saveNote }>Save Changes</button>
-                    </div>;
-                case "delete":
-                    topBarUI = <div className="ContentPanel__top-bar-modify">
-                        <input ref={ noteNameInputRef } type="text" placeholder="note name" />
-                        <button type="button" onClick={ this.deleteNote }>Delete Note</button>
-                    </div>;
-                default:
-                    topBarUI = <div className="ContentPanel__top-bar-text">
-                        <div className="ContentPanel__top-bar-display">{ this.state.activeNote.name }</div>
-                        <button type="button" onClick={ this.deleteNote }>New Note</button>
-                    </div>;
-        }
-
-        return topBarUI;
-    }
-
-    getTextareaUI (noteContentTextareaRef) {
-        let textareaUI;
-
-        switch (this.state.uiMode) {
-            case "new":
-                textareaUI = <textarea ref={ noteContentTextareaRef } className="ContentPanel__textarea" value={ this.state.activeNote.content } onChange={ this.saveNote }></textarea>;
-            default:
-                textareaUI = <textarea ref={ noteContentTextareaRef } placeholder="write note" className="ContentPanel__textarea-modify" onChange={ this.saveNote }></textarea>;
-        }
-
-        return textareaUI;
-    }
-
-    render () {
-        return (
-            <div className="ContentPanel">
+    createNewNoteUI() {
+        return(
+            <div className="ContentPanel__interface-group">
+                <h2>New Note</h2>
                 <div className="ContentPanel__top-bar">
-                    { this.getTopBarUI(this.noteNameInput) }
+                    <div className="ContentPanel__top-bar-display">
+                        <input
+                            type="text"
+                            ref={ this.noteNameInput }
+                            className="ContentPanel__top-bar-title-text"
+                            value={ this.state.newNote.name || '' }
+                            onChange={ this.updateNewNote } />
+                        <button type="button" onClick={ this.createNewNote }>Create New Note</button>
+                    </div>
                 </div>
                 <div className="ContentPanel__body">
-                    { this.getTextareaUI(this.noteContentTextarea) }
+                    <textarea
+                        ref={ this.noteContentTextarea }
+                        className="ContentPanel__textarea"
+                        value={ this.state.newNote.body || '' }
+                        onChange={ this.updateNewNote }></textarea>
                 </div>
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <div className="ContentPanel">
+                {
+                    this.createNewNoteUI()
+                }
             </div>
         );
     }
