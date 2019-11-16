@@ -5,6 +5,10 @@
 }
 
 .SidePanel__search-result {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 0.25rem 0.125rem;
     margin-top: 0.25rem;
     border: 1px solid transparent;
@@ -13,4 +17,25 @@
     &:hover {
         border: 1px solid #aaa;
     }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0;
+        background-color: transparent;
+        color: red;
+        border: 0;
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+}
+
+.SidePanel__note-name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
 }

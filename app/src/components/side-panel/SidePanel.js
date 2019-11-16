@@ -59,11 +59,32 @@ class SidePanel extends Component {
         this.props.updateActiveNoteId(noteId);
     }
 
+    deleteNote(noteId) {
+        if (window.confirm("Delete this note?")) {
+            const data = {noteId : noteId};
+            axios.post(this.apiBasePath + '/delete-note/', data)
+            .then((response) => {
+                if (response.status === 200 && response.data) {
+                    this.setState({
+                        searchFieldInput: this.state.searchFieldInput,
+                        searchResults: this.state.searchResults.filter((item, i) => {
+                            return item.id !== noteId
+                        })
+                    });
+                }
+            })
+            .catch((error) => {
+                alert('Failed to delete note');
+            });
+        }
+    }
+
     searchResults() {
         return this.state.searchResults.map((item, i) => {
             return (
-                <div key={i} className="SidePanel__search-result" onClick={ () => this.loadNote(item.id) }>
-                    { item.name }
+                <div key={i} className="SidePanel__search-result">
+                    <span className="SidePanel__note-name" onClick={ () => this.loadNote(item.id) }>{ item.name }</span>
+                    <button type="button" onClick={ () => this.deleteNote(item.id) }>X</button>
                 </div>
             );
         });

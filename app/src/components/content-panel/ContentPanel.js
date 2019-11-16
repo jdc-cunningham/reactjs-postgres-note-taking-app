@@ -14,7 +14,9 @@ class ContentPanel extends Component {
             body: "",
             saveBtnDisabled: true
         },
-        activeNoteLoaded: false
+        noteLoaded: false,
+        activeNoteId: null
+        // propNoteId: this.props.activeNoteId
         // activeNoteId: this.props.activeNoteId // anti-pattern, not working
     }
 
@@ -57,6 +59,15 @@ class ContentPanel extends Component {
     //     console.log('mount');
     // }
 
+    // shouldComponentUpdate() {
+    //     console.log(this.state.activeNoteId);
+    //     console.log(this.state.propNoteId);
+    //     if (this.state.activeNoteId !== this.props.activeNoteId) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
     getNoteById(noteId) {
         const data = {
             noteId: noteId
@@ -68,13 +79,14 @@ class ContentPanel extends Component {
                 if (response.status === 200 && response.data) {
                     // return this.createViewNoteUI(response.data);
                     const curState = this.state;
-                    // curState.activeNote = {
-                    //     name: response.data.name,
-                    //     body: response.data.content
-                    // };
-                    // curState.activeNoteLoaded = true;
-                    // this.setState(curState);
-                    // console.log('set state');
+                    curState.activeNoteId = noteId;
+                    curState.activeNote = {
+                        name: response.data.name,
+                        body: response.data.content,
+                        saveBtnDisabled: true
+                    };
+                    curState.noteLoaded = true;
+                    this.setState(curState);
                 }
             })
             .catch((error) => {
@@ -152,31 +164,36 @@ class ContentPanel extends Component {
 
     createViewNoteUI() {
         const activeNote = this.state.activeNote;
-        return (
-            <div className="ContentPanel__interface-group">
-                <h2>Loaded Note</h2>
-                <div className="ContentPanel__top-bar">
-                    <div className="ContentPanel__top-bar-display">
-                        <input
-                            type="text"
-                            ref={ this.noteNameInput }
-                            className="ContentPanel__top-bar-title-text"
-                            value={ activeNote.name || '' }
-                            placeholder="note name"
-                            onChange={ this.updateActiveNote } />
-                        <button type="button" disabled={ this.state.activeNote.saveBtnDisabled } onClick={ this.updateNote }>Save Note Changes</button>
+
+        if (this.state.noteLoaded) {
+            return (
+                <div className="ContentPanel__interface-group">
+                    <h2>Loaded Note</h2>
+                    <div className="ContentPanel__top-bar">
+                        <div className="ContentPanel__top-bar-display">
+                            <input
+                                type="text"
+                                ref={ this.noteNameInput }
+                                className="ContentPanel__top-bar-title-text"
+                                value={ activeNote.name || '' }
+                                placeholder="note name"
+                                onChange={ this.updateActiveNote } />
+                            <button type="button" disabled={ this.state.activeNote.saveBtnDisabled } onClick={ this.updateNote }>Save Note Changes</button>
+                        </div>
+                    </div>
+                    <div className="ContentPanel__body">
+                        <textarea
+                            ref={ this.noteContentTextarea }
+                            className="ContentPanel__textarea"
+                            value={ activeNote.body || '' }
+                            placeholder="note body"
+                            onChange={ this.updateNewNote }></textarea>
                     </div>
                 </div>
-                <div className="ContentPanel__body">
-                    <textarea
-                        ref={ this.noteContentTextarea }
-                        className="ContentPanel__textarea"
-                        value={ activeNote.content || '' }
-                        placeholder="note body"
-                        onChange={ this.updateNewNote }></textarea>
-                </div>
-            </div>
-        );
+            );
+        } else {
+            return "Search and click on a note from the side panel";
+        }
         // if (activeNoteId) {
         //     const noteData = this.getNoteById(activeNoteId);
         //     if (noteData) {
@@ -191,14 +208,12 @@ class ContentPanel extends Component {
 
     render() {
         const activeNoteId = this.props.activeNoteId;
-        console.log(activeNoteId);
-        console.log(this.state);
 
         return (
             <div className="ContentPanel">
                 {
                     // this.createNewNoteUI()
-                    !this.activeNoteLoaded ? this.getNoteById(activeNoteId) : this.createViewNoteUI()
+                    this.state.activeNoteId !== activeNoteId ? this.getNoteById(activeNoteId) : this.createViewNoteUI()
                 }
             </div>
         );
