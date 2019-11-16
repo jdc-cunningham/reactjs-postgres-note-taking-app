@@ -28,6 +28,22 @@ Although... the Windows update happened anyway/restarted my comptuter and all of
 I don't know maybe it's good to just start with a blank slate. I have so much random "middle of thought" things going.
 I'm just going to do it, I will finish the CRUD capability of this in a few minutes though.
 
+I want to get this done so I can continue on my robotics project.
+
+One thing I have to address also is the communication between the sidepanel and content panel. I will probably use props for this to bridge the two. Redux is something I have to learn at some point but last time I looked at it, it was this "big thing" that you gotta pick up. Which at the end of the day it's up to you, do it or don't.
+
+I'm seeing some inheritance action going on here, I could make the same UI with one method and just assign it a different role. Of course my lizard brain is like "nah b, get it done fast"
+
+I'm getting that coffee headache, third cup, fasting need more water
+
+AHHH it's hard, what is the point of anything. I keep thinking about that, I partially think "if it makes money it has meaning" but I also blow money/money just gets spent. The other day I get a random tax bill and I pay that, and it's like "alright, couple hundred dollars just gone" then I complain about 10 dollars or so I lost somewhere. It's whack.
+
+FIRE is the path... but I've got a ways to go.
+
+I realize I'm going backwards... I was at a point of using functional components and hooks such as useState/useEffect. I've been doing other stuff all this time(eg. new job getting better with git, custom framework, unit testing/graybox testing with jasmine/mocha/selenium) and on my own learning new stuf eg. node/postgres and the robotics stuff/3D Printing and generally just trying to not become homeless although I do make decent money just keep burning it(got a flat tire recently dropped some hondos to fix that).
+
+
+
 ##### 11/12/2019
 So it did completely slip my mind to make a way on the front end to insert notes.
 Also other features like loading last opened.

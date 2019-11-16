@@ -1,4 +1,16 @@
 .SidePanel {
     width: 30%;
     min-height: 100vh;
+    padding: 0.5rem;
+}
+
+.SidePanel__search-result {
+    padding: 0.25rem 0.125rem;
+    margin-top: 0.25rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid #aaa;
+    }
 }
