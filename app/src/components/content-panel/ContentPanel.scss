@@ -4,3 +4,14 @@
     padding: 0.5rem;
     border-left: 1px solid #aaa;
 }
+
+.ContentPanel__top-bar-title-text {
+    margin-right: 0.5rem;
+}
+
+.ContentPanel__textarea {
+    margin-top: 0.5rem;
+    min-width: 500px;
+    min-height: 250px;
+    max-width: 100%;
+}

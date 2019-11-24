@@ -79,14 +79,22 @@ class SidePanel extends Component {
     }
 
     searchResults() {
-        return this.state.searchResults.map((item, i) => {
-            return (
-                <div key={i} className="SidePanel__search-result">
-                    <span className="SidePanel__note-name" onClick={ () => this.loadNote(item.id) }>{ item.name }</span>
-                    <button type="button" onClick={ () => this.deleteNote(item.id) }>X</button>
+        if (!this.state.searchResults.length) {
+            return(
+                <div className="SidePanel__search-result no-hover">
+                    <span className="SidePanel__note-name">No notes</span>
                 </div>
             );
-        });
+        } else {
+            return this.state.searchResults.map((item, i) => {
+                return (
+                    <div key={i} className="SidePanel__search-result">
+                        <span className="SidePanel__note-name" onClick={ () => this.loadNote(item.id) }>{ item.name }</span>
+                        <button type="button" onClick={ () => this.deleteNote(item.id) }>X</button>
+                    </div>
+                );
+            });
+        }
     }
 
     render() {

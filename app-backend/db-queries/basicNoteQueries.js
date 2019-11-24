@@ -93,11 +93,14 @@ const deleteNote = (request, response) => {
     )
 };
 
+// using case-insensitive search with index from here:
+// https://stackoverflow.com/questions/7005302/postgresql-how-to-make-case-insensitive-query
+// CREATE INDEX command ran on table in notes db
 const searchNotes = (request, response) => {
     const partialQuery = '%' + request.body.searchTerm + '%';
 
     pool.query(
-        'SELECT id, name FROM note_entries WHERE name LIKE $1 ',
+        'SELECT id, name FROM note_entries WHERE LOWER(name) LIKE LOWER($1) ',
         [
             partialQuery
         ],
