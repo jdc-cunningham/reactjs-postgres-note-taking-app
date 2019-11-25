@@ -6,7 +6,8 @@ class ContentPanel extends Component {
     state = {
         newNote: {
             name: "",
-            body: ""
+            body: "",
+            collapsed: true
         },
         activeNote: {
             name: "",
@@ -40,7 +41,7 @@ class ContentPanel extends Component {
             newNote: {
                 name: newNoteName,
                 body: newNoteBody,
-                saveBtnDisabled: false
+                collapsed: false
             }
         });
     }
@@ -129,7 +130,8 @@ class ContentPanel extends Component {
         this.setState({
             newNote: {
                 name: "",
-                body: ""
+                body: "",
+                collapsed: false
             }
         });
     }
@@ -179,7 +181,7 @@ class ContentPanel extends Component {
                 <div className="ContentPanel__body">
                     <textarea
                         ref={ this.noteContentTextarea }
-                        className="ContentPanel__textarea"
+                        className={"ContentPanel__textarea" + (this.state.newNote.collapsed ? " collapsed" : "")}
                         placeholder="note body"
                         onChange={ this.updateNewNote }></textarea>
                 </div>

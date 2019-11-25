@@ -5,6 +5,10 @@
     border-left: 1px solid #aaa;
 }
 
+.ContentPanel__interface-group {
+    margin-bottom: 0.5rem;
+}
+
 .ContentPanel__top-bar-title-text {
     margin-right: 0.5rem;
 }
@@ -14,4 +18,8 @@
     min-width: 500px;
     min-height: 250px;
     max-width: 100%;
+
+    &.collapsed {
+        display: none;
+    }
 }

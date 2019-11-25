@@ -30,11 +30,12 @@ class SidePanel extends Component {
         const searchInput = this.inputSearch.current.value
         const data = {};
         const prevState = this.state;
+        const prevSearch = prevState.searchFieldInput;
         prevState.searchFieldInput = searchInput;
 
         this.setState(prevState);
 
-        if (!searchInput) {
+        if (!searchInput || searchInput !== prevSearch) {
             return false;
         }
 
@@ -79,10 +80,13 @@ class SidePanel extends Component {
     }
 
     searchResults() {
+        const noNotesString = this.state.searchFieldInput.length ? "No notes" : "";
         if (!this.state.searchResults.length) {
             return(
                 <div className="SidePanel__search-result no-hover">
-                    <span className="SidePanel__note-name">No notes</span>
+                    <span className="SidePanel__note-name">
+                        {noNotesString}
+                    </span>
                 </div>
             );
         } else {
