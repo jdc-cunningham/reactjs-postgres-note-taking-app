@@ -1,3 +1,38 @@
+##### 11/24/2019
+It is 5PM... ate earlier, cooked... feel like crap, seems like a losing battle.
+I want today to feel like I accomplished something(I did learn some of the JWT implementation)
+I'm currently trying to fix this dumb state issue where the view note overrides/interferes with the new note's state eg. you type in the view note's textarea and it updates the new note textarea's field.
+I just feel it my weak brain, work damn it.
+Yeah and I get the whole "known state" thing but man it's hard to develop like that for me... like you always know the value of an input it's not just "free floating" out there because you load it in state.
+I don't know...(eye glaze giving up belong in the dirt) the problem is simple just copy/paste my own code/not binding write methods and inputs(need distinct)
+
+I think I will implement the password hashing here... which I feel on the fence about... eg. I can't use this locally anymore I mean it is possible to setup encryption within a local network somehow(like SSL) but it's easier FOR ME to do it on a remote server eg. vps.
+
+I also want the JWT/refresh token going on. I just have to read about that regarding proper implementation eg. httpOnly cookie.
+
+What is value, how do I feel like I achieved something/made progress.
+I know go cure cancer or something, you're a privileged person, etc... I am that is true.
+
+commit... silence until you get it done, bcrypt, jwt and refresh token then I can die in peace
+
+I can see it though an end goal for me... I don't know how quickly I can get there. It's not full fire eg. half a mil with 4% interest on average... just living by my lonesome $20k a year and I produce content... videos. I think I found happiness when I was younger(building model airplanes and producing) this was back then like 2009 or that area even earlier... I actually made like $7 from my YouTube videos... I mean damn... we can rebuild him(me).
+
+But yeah, if my life keeps progressing in a positive direction I will move out somewhere with land and continue with making content(videos) regarding hardware(robots/fixed wing drones/etc). Also hopefully figure out how to be an entrepreneur eg. actually make a business that makes money. Nothing big... but hopefully at least real.
+
+Hahaha... push one key and a giant wall of red shows up... damn it
+
+WHY IS IT UNDEFINED?!!! PORQUE?!!!
+
+Oh damn I think this is that mount lifecycle order thing... "doesn't exist" like delegation/binding ahhhh, since it's rendered after you search for something/click on it/makes it.
+
+Oh... I see I'm using both controlled and uncontrolled...
+
+time to request the help of the internet... "I can't read, help me" seriously though I don't think I know what to search on Google... been looking through SO posts.
+
+Yeap that was it... 1 hour later, didn't bind to this great, I solved my own question after trying to reproduce it in a sandbox but was simpler so I caught the issue.
+
+
+
 ##### 11/16/2019
 I have two whole days... of course I don't want to spend that much time on this particular project.
 I gotta get something that works... I bought more ram now will have 32GB yeah boiii

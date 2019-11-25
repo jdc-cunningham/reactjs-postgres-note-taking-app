@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './ContentPanel.scss';
 import axios from 'axios';
-import { resolve } from 'dns';
 
 class ContentPanel extends Component {
     state = {
@@ -23,9 +22,13 @@ class ContentPanel extends Component {
     apiBasePath = 'http://localhost:5001/api';
     noteNameInput = React.createRef();
     noteContentTextarea = React.createRef();
+    viewNoteNameInput = React.createRef();
+    viewNoteContentTextarea = React.createRef();
+
     updateNewNote = this.updateNewNote.bind(this);
     createNewNote = this.createNewNote.bind(this);
     updateNote = this.updateNote.bind(this);
+    updateActiveNote = this.updateActiveNote.bind(this);
     getNoteById = this.getNoteById.bind(this);
     createViewNoteUI = this.createViewNoteUI.bind(this);
 
@@ -35,14 +38,19 @@ class ContentPanel extends Component {
         this.setState({
             newNote: {
                 name: newNoteName,
-                body: newNoteBody
+                body: newNoteBody,
+                saveBtnDisabled: false
             }
         });
     }
 
+    componentDidMount() {
+        
+    }
+
     updateActiveNote() {
-        const newNoteName = this.noteNameInput.current.value;
-        const newNoteBody = this.noteContentTextarea.current.value;
+        const newNoteName = this.viewNoteNameInput.current.value;
+        const newNoteBody = this.viewNoteContentTextarea.current.value;
         this.setState({
             activeNote: {
                 name: newNoteName,
@@ -144,7 +152,6 @@ class ContentPanel extends Component {
                             type="text"
                             ref={ this.noteNameInput }
                             className="ContentPanel__top-bar-title-text"
-                            value={ this.state.newNote.name || '' }
                             placeholder="note name"
                             onChange={ this.updateNewNote } />
                         <button type="button" onClick={ this.createNewNote }>Create New Note</button>
@@ -154,7 +161,6 @@ class ContentPanel extends Component {
                     <textarea
                         ref={ this.noteContentTextarea }
                         className="ContentPanel__textarea"
-                        value={ this.state.newNote.body || '' }
                         placeholder="note body"
                         onChange={ this.updateNewNote }></textarea>
                 </div>
@@ -173,7 +179,7 @@ class ContentPanel extends Component {
                         <div className="ContentPanel__top-bar-display">
                             <input
                                 type="text"
-                                ref={ this.noteNameInput }
+                                ref={ this.viewNoteNameInput }
                                 className="ContentPanel__top-bar-title-text"
                                 value={ activeNote.name || '' }
                                 placeholder="note name"
@@ -183,11 +189,11 @@ class ContentPanel extends Component {
                     </div>
                     <div className="ContentPanel__body">
                         <textarea
-                            ref={ this.noteContentTextarea }
+                            ref={ this.viewNoteContentTextarea }
                             className="ContentPanel__textarea"
                             value={ activeNote.body || '' }
                             placeholder="note body"
-                            onChange={ this.updateNewNote }></textarea>
+                            onChange={ this.updateActiveNote }></textarea>
                     </div>
                 </div>
             );
@@ -207,9 +213,12 @@ class ContentPanel extends Component {
     }
 
     render() {
+        console.log('render');
+        console.log(this.noteNameInput);
         const activeNoteId = this.props.activeNoteId;
         const newNoteUI = this.createNewNoteUI();
-        const loadNoteUI = this.state.activeNoteId !== activeNoteId ? this.getNoteById(activeNoteId) : this.createViewNoteUI();
+        const loadNoteUI = this.state.activeNoteId !== activeNoteId ?
+            this.getNoteById(activeNoteId) : this.createViewNoteUI();
 
         return (
             <div className="ContentPanel">
