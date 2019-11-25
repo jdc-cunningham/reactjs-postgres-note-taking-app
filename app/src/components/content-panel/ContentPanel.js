@@ -29,7 +29,7 @@ class ContentPanel extends Component {
     updateActiveNote = this.updateActiveNote.bind(this);
     getNoteById = this.getNoteById.bind(this);
     updateNote = this.updateNote.bind(this);
-    clearNewNoteFields = this.clearNewNoteFields(this);
+    clearNewNoteFields = this.clearNewNoteFields.bind(this);
     createNewNote = this.createNewNote.bind(this);
     createViewNoteUI = this.createViewNoteUI.bind(this);
 
