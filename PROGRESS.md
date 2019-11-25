@@ -31,7 +31,11 @@ time to request the help of the internet... "I can't read, help me" seriously th
 
 Yeap that was it... 1 hour later, didn't bind to this great, I solved my own question after trying to reproduce it in a sandbox but was simpler so I caught the issue.
 
+Alright gonna make an update call... oof... I'm feeling it... burnt. I'm going to have to cap this at some point so I don't feel like crap tomorrow... two days of though, that PTO! AMERICA!!! ha... I am poor. I'm going to try and finish this SaaS project I'm working on THAT NO ONE WANTS!!! <- why I'm poor
 
+Well, I now have update... look at this absolute piece of crap UI, like I know it's not styled or anything but like the new note isn't needed... this is the design thing I was struggling with before... I didn't have one to begin with so I'd just been building the parts. The backend was way easier to do than this React part granted it's your avg. CRUD I'm going to do the bcrypt stuff, this is useable for now.
+
+![piece-of-crap](./progress-images/piece-of-crap.JPG)
 
 ##### 11/16/2019
 I have two whole days... of course I don't want to spend that much time on this particular project.

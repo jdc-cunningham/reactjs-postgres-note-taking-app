@@ -26,10 +26,11 @@ class ContentPanel extends Component {
     viewNoteContentTextarea = React.createRef();
 
     updateNewNote = this.updateNewNote.bind(this);
-    createNewNote = this.createNewNote.bind(this);
-    updateNote = this.updateNote.bind(this);
     updateActiveNote = this.updateActiveNote.bind(this);
     getNoteById = this.getNoteById.bind(this);
+    updateNote = this.updateNote.bind(this);
+    clearNewNoteFields = this.clearNewNoteFields(this);
+    createNewNote = this.createNewNote.bind(this);
     createViewNoteUI = this.createViewNoteUI.bind(this);
 
     updateNewNote() {
@@ -42,10 +43,6 @@ class ContentPanel extends Component {
                 saveBtnDisabled: false
             }
         });
-    }
-
-    componentDidMount() {
-        
     }
 
     updateActiveNote() {
@@ -103,7 +100,29 @@ class ContentPanel extends Component {
     }
 
     updateNote() {
+        const activeNoteName = this.viewNoteNameInput.current.value;
+        const activeNoteContent = this.viewNoteContentTextarea.current.value;
+        const data = {
+            noteId: this.state.activeNoteId,
+            noteName: activeNoteName,
+            noteContent: activeNoteContent
+        };
 
+        axios.post(this.apiBasePath + '/update-note/', data)
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200) {
+                    alert('note updated');
+                    const modState = this.state;
+                    this.state.activeNote.saveBtnDisabled = true;
+                    this.setState({
+                        modState
+                    });
+                }
+            })
+            .catch((error) => {
+                return false;
+            });
     }
 
     clearNewNoteFields() {
@@ -184,7 +203,10 @@ class ContentPanel extends Component {
                                 value={ activeNote.name || '' }
                                 placeholder="note name"
                                 onChange={ this.updateActiveNote } />
-                            <button type="button" disabled={ this.state.activeNote.saveBtnDisabled } onClick={ this.updateNote }>Save Note Changes</button>
+                            <button
+                                type="button"
+                                disabled={ this.state.activeNote.saveBtnDisabled }
+                                onClick={ this.updateNote }>Save Note Changes</button>
                         </div>
                     </div>
                     <div className="ContentPanel__body">
