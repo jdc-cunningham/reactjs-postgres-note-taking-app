@@ -39,7 +39,7 @@ I'm using the MySQL Command Line Client to run these commands after having logge
 
 I imagine this is my own fault but I've spent at least a solid day trying to get postgres to work, I will try again on a "real server" eg. a vps running Debian/Ubuntu. But I just want to get this thing to work, sucks having to rework the datastore to use MySQL over Postgres but thankfully it's pretty close hopefully.
 
-`CREATED DATABASE notes;`
+`CREATE DATABASE notes;`
 
 `CREATE TABLE note_entries (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), content TEXT, tags VARCHAR(255), created_at TIMESTAMP, updated_at TIMESTAMP, PRIMARY KEY (id));`
 
