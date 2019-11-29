@@ -35,7 +35,7 @@ class SidePanel extends Component {
 
         this.setState(prevState);
 
-        if (!searchInput || searchInput !== prevSearch) {
+        if (!searchInput || searchInput === prevSearch) {
             return false;
         }
 
