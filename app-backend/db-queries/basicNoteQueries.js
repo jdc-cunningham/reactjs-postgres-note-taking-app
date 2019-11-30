@@ -95,6 +95,7 @@ const searchNotes = (request, response) => {
             partialQuery
         ],
         (error, results) => {
+            console.log(error);
             if (error) {
                 // need to handle these in a logger
                 response.status(401).send('Failed to search for notes'); // vague front end error

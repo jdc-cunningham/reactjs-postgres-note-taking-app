@@ -12,7 +12,6 @@ class App extends Component {
   updateActiveNoteId = this.updateActiveNoteId.bind(this);
 
   updateActiveNoteId(noteId) {
-    console.log('update active note id');
     this.setState({
       activeNoteId: noteId
     })

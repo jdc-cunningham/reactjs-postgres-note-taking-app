@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './SidePanel.scss';
 import axios from 'axios';
 
+require('dotenv').config();
+
 class SidePanel extends Component {
     state = {
         searchFieldInput: "",
@@ -9,7 +11,7 @@ class SidePanel extends Component {
         activeNoteId: this.props.activeNoteId
     }
 
-    apiBasePath = 'http://localhost:5001/api';
+    apiBasePath = process.env.REACT_APP_BASE_API_URL;
     searchNotes = this.searchNotes.bind(this);
     inputSearch = React.createRef();
 

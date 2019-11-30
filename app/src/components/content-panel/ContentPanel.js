@@ -16,11 +16,9 @@ class ContentPanel extends Component {
         },
         noteLoaded: false,
         activeNoteId: null
-        // propNoteId: this.props.activeNoteId
-        // activeNoteId: this.props.activeNoteId // anti-pattern, not working
     }
 
-    apiBasePath = 'http://localhost:5001/api';
+    apiBasePath = process.env.REACT_APP_BASE_API_URL;
     noteNameInput = React.createRef();
     noteContentTextarea = React.createRef();
     viewNoteNameInput = React.createRef();
@@ -57,23 +55,6 @@ class ContentPanel extends Component {
         });
     }
 
-    // componentDidUpdate() {
-    //     console.log('yes');
-    // }
-
-    // componentDidMount() {
-    //     console.log('mount');
-    // }
-
-    // shouldComponentUpdate() {
-    //     console.log(this.state.activeNoteId);
-    //     console.log(this.state.propNoteId);
-    //     if (this.state.activeNoteId !== this.props.activeNoteId) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     getNoteById(noteId) {
         const data = {
             noteId: noteId
@@ -81,7 +62,6 @@ class ContentPanel extends Component {
 
         axios.post(this.apiBasePath + '/get-note/', data)
             .then((response) => {
-                console.log(response);
                 if (response.status === 200 && response.data) {
                     // return this.createViewNoteUI(response.data);
                     const curState = this.state;
@@ -111,9 +91,7 @@ class ContentPanel extends Component {
 
         axios.post(this.apiBasePath + '/update-note/', data)
             .then((response) => {
-                console.log(response);
                 if (response.status === 200) {
-                    alert('note updated');
                     const modState = this.state;
                     this.state.activeNote.saveBtnDisabled = true;
                     this.setState({
@@ -149,7 +127,6 @@ class ContentPanel extends Component {
 
             axios.post(this.apiBasePath + '/create-note/', data)
                 .then((response) => {
-                    console.log(response);
                     if (response.status === 201) {
                         alert('Created new note');
                         this.clearNewNoteFields();
@@ -165,7 +142,7 @@ class ContentPanel extends Component {
 
     createNewNoteUI() {
         return(
-            <div className="ContentPanel__interface-group">
+            <div className="ContentPanel__interface-group create">
                 <h2>New Note</h2>
                 <div className="ContentPanel__top-bar">
                     <div className="ContentPanel__top-bar-display">
@@ -194,7 +171,7 @@ class ContentPanel extends Component {
 
         if (this.state.noteLoaded) {
             return (
-                <div className="ContentPanel__interface-group">
+                <div className="ContentPanel__interface-group view">
                     <h2>Loaded Note</h2>
                     <div className="ContentPanel__top-bar">
                         <div className="ContentPanel__top-bar-display">
@@ -224,21 +201,9 @@ class ContentPanel extends Component {
         } else {
             return "Search and click on a note from the side panel";
         }
-        // if (activeNoteId) {
-        //     const noteData = this.getNoteById(activeNoteId);
-        //     if (noteData) {
-                
-        //     } else {
-        //         return "Failed to get note content"
-        //     }
-        // } else {
-        //     return "Load a note by searching on the sidepanel"
-        // }
     }
 
     render() {
-        console.log('render');
-        console.log(this.noteNameInput);
         const activeNoteId = this.props.activeNoteId;
         const newNoteUI = this.createNewNoteUI();
         const loadNoteUI = this.state.activeNoteId !== activeNoteId ?

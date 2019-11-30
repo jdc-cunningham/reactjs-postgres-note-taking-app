@@ -7,6 +7,28 @@
 
 .ContentPanel__interface-group {
     margin-bottom: 0.5rem;
+
+    .ContentPanel__top-bar-display {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        input {
+            padding: 0.125rem;
+        }
+
+        button {
+            min-height: 24px;
+        }
+    }
+
+    &.view .ContentPanel__top-bar-display {
+        button:enabled {
+            background-color: green;
+            color: white;
+            border: 0;
+        }
+    }
 }
 
 .ContentPanel__top-bar-title-text {
@@ -16,8 +38,8 @@
 .ContentPanel__textarea {
     margin-top: 0.5rem;
     min-width: 500px;
+    width: 100%;
     min-height: 250px;
-    max-width: 100%;
 
     &.collapsed {
         display: none;
