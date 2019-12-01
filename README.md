@@ -3,7 +3,7 @@ I just deployed this locally, using a hosts to map to notes.com(note I don't hav
 
 It is a piece of crap no doubt that's why it matters to go deep/all into a project or at least have some sort of plan but I learned a bit.
 
-![deployed-locally](./images/current-implementation.JPG)
+![deployed-locally](./images/current-implementation-2.JPG)
 
 ### Info
 This one of those "Why don't you just use Evernote/Trello" sort of things.
