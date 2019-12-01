@@ -1,3 +1,10 @@
+### Current
+I just deployed this locally, using a hosts to map to notes.com(note I don't have anything to do with that real domain) I'm just using it for something easy to remember from within own network. Due to having multiple sub-directories couldn't just map to main domain, used a port to serve up that specific directory.
+
+It is a piece of crap no doubt that's why it matters to go deep/all into a project or at least have some sort of plan but I learned a bit.
+
+![deployed-locally](./images/current-implementation.JPG)
+
 ### Info
 This one of those "Why don't you just use Evernote/Trello" sort of things.
 Another thing is grouping/collecting all open Chrome tabs/pruning and then saving for future use eg. Chrome extension.
